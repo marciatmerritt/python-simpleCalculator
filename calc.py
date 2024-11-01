@@ -30,6 +30,22 @@ while True:
     except ValueError:
       print("Invalid input. Please enter a number")
       continue
-
+    if choice == '1':
+      print(num1, " + ", num2, " = ", add(num1, num2))
+    elif choice == '2':
+      print(num1, " - ", num2, " = ", subtract(num1, num2))
+    elif choice == '3':
+      print(num1, " * ", num2, " = ", multiply(num1, num2))
+    elif choice == '4':
+      try:  
+        print(num1, " / ", num2, " = ", divide(num1, num2))
+      except ZeroDivisionError:
+        print("Division by zero not allowed!")
+        continue
+    
+    next_calculation = input("Would you like to do another calculation? ")
+    if next_calculation == 'no':
+      break
   else:
     print("Invalid input. Try Again")
+  
