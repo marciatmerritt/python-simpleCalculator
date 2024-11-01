@@ -11,7 +11,7 @@ def divide(x, y):
   if y != 0:
     return x / y
   else:
-    print("Division by zero not allowed!)
+    print("Division by zero not allowed!")
 
 print("Select operation: ")
 print("1. Add")
@@ -27,7 +27,9 @@ while True:
       # get numbers from the user
       num1 = float(input("Enter first number: "))
       num2 = float(input("Enter second number: "))
-    except
-      
+    except ValueError:
+      print("Invalid input. Please enter a number")
+      continue
+
   else:
-    print("Invalid Input. Try Again")
+    print("Invalid input. Try Again")
