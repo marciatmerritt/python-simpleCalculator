@@ -74,7 +74,7 @@ Through this project, I practiced:
 1. Run the script using a Python interpreter.
 
    ```bash
-   python calc.py
+   python calculator.py
    ```
 
 2. You’ll be prompted to select an operation by entering a number (1 for addition, 2 for subtraction, etc.).
