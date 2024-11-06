@@ -37,6 +37,7 @@ Through this project, I practiced:
   - Subtraction
   - Multiplication
   - Division
+  - Exponentiation
 
 - **User Interaction & Looping**:
   - Prompts for selecting operations and entering numbers, with an exit option
@@ -90,8 +91,10 @@ Select operation:
 2. Subtract
 3. Multiply
 4. Divide
+5. Exponentiate
+0. Exit
 
-Enter Selection (1/2/3/4): 1
+Enter Operation Selection: 1
 Enter first number: 10
 Enter second number: 5
 10.0 + 5.0 = 15.0

@@ -14,7 +14,38 @@ def divide(x, y):
   if y == 0:
     return None # Return None if division by zero
   return x / y
-    
+
+def exponentiate(x, y):
+  return x ** y
+
+# Function to get operation choice
+def get_operation():
+  operations = {
+    "1": {"name": "Add", "symbol": "+", "function": add},
+    "2": {"name": "Subtract", "symbol": "-", "function": subtract},
+    "3": {"name": "Multiply", "symbol": "*", "function": multiply},
+    "4": {"name": "Divide", "symbol": "/", "function": divide},
+    "5": {"name": "Exponentiate", "symbol": "^", "function": exponentiate},
+    "0": {"name": "Exit", "symbol": None},
+  }
+
+  print("\nSelect operation: ")
+  for key, value in operations.items():
+    print(f"{key}. {value['name']}")
+  
+  while True:
+    choice = input("\nEnter Operation Selection: ")
+    if choice in operations:
+      return operations[choice]
+    print("\nInvalid selection. Please choose a valid option.")
+
+def get_number(prompt):
+  while True:
+    try:
+      return float(input(prompt))
+    except ValueError:
+      print("Invalid input. Please enter a valid number.")
+
 # Function to prompt the user to continue or not
 def keep_going(prompt="\nWould you like to do another calculation? (yes/no): "):
   while True:
@@ -36,45 +67,26 @@ signal.signal(signal.SIGINT, signal_handler)
 
 # Main function to run the calculator program
 def main():
-  print("Select operation: ")
-  print("1. Add")
-  print("2. Subtract")
-  print("3. Multiply")
-  print("4. Divide")
-  print("5. Exit")
-
-  while True:
-    choice = input("\nEnter Selection (1/2/3/4/5): ")
-    if choice in ('1', '2', '3', '4'):
-      try:
-        num1 = float(input("Enter first number: "))
-        num2 = float(input("Enter second number: "))
-      except ValueError:
-        print("\nInvalid input. Please enter numbers only")
-        continue
-      if choice == '1':
-        print(f"{num1} + {num2} = {add(num1, num2)}")
-      elif choice == '2':
-        print(f"{num1} - {num2} = {subtract(num1, num2)}")
-      elif choice == '3':
-        print(f"{num1} * {num2} = {multiply(num1, num2)}")
-      elif choice == '4':
-        result = divide(num1, num2)
-        if result is None:
-          print("\nError: Division by zero is not allowed!")
-        else:
-          print(f"{num1} / {num2} = {result}")
+    while True:
+      choice = get_operation()
+      if choice['name'] == "Exit":
+        print("\nExiting the calculator. Goodbye!")
+        break
       
-    elif choice == '5':
-      print("\nExiting the calculator. Goodbye!")
-      break
-    else:
-      print("\nInvalid input. Please enter a valid option (1/2/3/4/5).")
-      continue
+      # prompt user for numbers
+      num1 = get_number("Enter first number: ")
+      num2 = get_number("Enter second number: ")
+
+      # perform calculations
+      result = choice['function'](num1, num2)
+      if result is None and choice['name'] == "Divide":
+        print("Error: Division by zero is not allowed!")
+      else:
+        print(f"{num1} {choice['symbol']} {num2} = {result}")
     
-    if not keep_going():
-      print("\nExiting the calculator. Goodbye!")
-      break
+      if not keep_going():
+        print("\nExiting the calculator. Goodbye!")
+        break
 
 # Run the main function if the script is executed directly
 if __name__ == "__main__":
