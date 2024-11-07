@@ -6,13 +6,13 @@ This module provides basic arithmetic functions: addition, subtraction,
 multiplication, division, and exponentiation.
 """
 def add(x, y):
-  return x + y
+  return round((x + y), 3)
 
 def subtract(x, y):
-  return x - y
+  return round((x - y), 3)
 
 def multiply(x, y):
-  return x * y
+  return round((x * y), 3)
 
 def divide(x, y):
   """Divide two numbers.
@@ -26,10 +26,10 @@ def divide(x, y):
   """
   if y == 0:
     return None # Avoid division by zero
-  return x / y
+  return round((x / y), 3)
 
 def exponentiate(x, y):
-  return x ** y
+  return round((x ** y), 3)
 
 def get_operation():
   """Display a menu of operations and prompt the user to choose one.
@@ -43,7 +43,7 @@ def get_operation():
     "3": {"name": "Multiply", "symbol": "*", "function": multiply},
     "4": {"name": "Divide", "symbol": "/", "function": divide},
     "5": {"name": "Exponentiate", "symbol": "^", "function": exponentiate},
-    "0": {"name": "Exit", "symbol": None},
+    "0": {"name": "Exit", "symbol": None, "function": None},
   }
 
   print("\nSelect operation: ")
